@@ -1,22 +1,26 @@
-# Validation
+# Validation
+
+Authoring date: November 6, 2026. Host: Windows. Target: Linux.
+
+## Local result
+
+Target-platform source CI is recorded after publication. This host has Python, Node.js, and .NET; other native toolchains are verified through CI. No unobserved GUI/device behavior is claimed.
+
+## Reproducible checks
+
+The GitHub Actions workflow builds/runs the following on `ubuntu-latest`:
+
+```sh
+cargo test
+cargo run --release -- --help
+```
+
+## Manual acceptance
+
+Run cargo run --release -- --path / --threshold 80, then add --watch and observe a test filesystem. Stop with Ctrl+C. Also test malformed inputs and an unwritable output destination.
+
+A workflow file is not evidence of a passing run. Observed CI run links and source commits are recorded after publication. Native GUI, sound, sleep/resume, and platform permissions require direct target-platform acceptance even when model tests pass.
 
-Authoring date: November 6, 2026. Host: Windows. Target: Linux.
+## Observed CI result
 
-## Local result
-
-Target-platform source CI is recorded after publication. This host has Python, Node.js, and .NET; other native toolchains are verified through CI. No unobserved GUI/device behavior is claimed.
-
-## Reproducible checks
-
-The GitHub Actions workflow builds/runs the following on `ubuntu-latest`:
-
-```sh
-cargo test
-cargo run --release -- --help
-```
-
-## Manual acceptance
-
-Run cargo run --release -- --path / --threshold 80, then add --watch and observe a test filesystem. Stop with Ctrl+C. Also test malformed inputs and an unwritable output destination.
-
-A workflow file is not evidence of a passing run. Observed CI run links and source commits are recorded after publication. Native GUI, sound, sleep/resume, and platform permissions require direct target-platform acceptance even when model tests pass.
+Passed: [target-platform build/check](https://github.com/netcodermike/linux-disk-space-sentinel/actions/runs/42205313910). Source commit: `5452d1e2994a352f383bb8db7848192f822e65b7`. Later documentation-only changes do not alter the tested implementation. The reproducible commands above identify test scope; native GUI/audio/permissions are not implied by compilation.
